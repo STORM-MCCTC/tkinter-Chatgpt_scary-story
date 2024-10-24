@@ -1,4 +1,3 @@
-import requests as req  # Not used, but kept for future use
 import tkinter as tk
 import openai
 
@@ -10,7 +9,7 @@ with open('api_key.txt', 'r') as file:
 # Create the main Tkinter window
 root = tk.Tk()
 root.title("AI Scary Story")
-root.geometry("1000x800")  # Adjusted size to fit all widgets
+root.geometry("1000x800")
 
 # Title label
 label = tk.Label(root, text="AI Scary Story", font=("Arial", 16))
@@ -26,7 +25,7 @@ def on_gen_click():
     try:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo", 
-            messages=[{"role": "user", "content": f"Write a short scary story about: {prompt}"}],
+            messages=[{"role": "user", "content": f"Write a short scary story that is PG13 about: {prompt} (reply with just the story)"}],
             temperature=0.8
         )
         story = response.choices[0].message['content'].strip()
@@ -57,9 +56,7 @@ Generate = tk.Button(root, text="Generate", command=on_gen_click)
 Generate.pack(pady=10)
 
 # Label to display the generated story
-Generated = tk.Label(root, text="generated text here", font=("Arial", 10), 
-                     wraplength=800, justify="left", anchor="nw", relief="sunken", 
-                     width=80, height=20)  # Adjusted size to fit within the window
+Generated = tk.Label(root, text="generated text here", font=("Arial", 10), wraplength=800, justify="left", anchor="nw", relief="sunken", width=80, height=20)
 Generated.pack(pady=20)
 
 # Save button
